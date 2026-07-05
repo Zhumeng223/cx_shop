@@ -28,6 +28,30 @@ class _HmSliderState extends State<HmSlider> {
     );
   }
 
+  Widget _getSearch() {
+    return Positioned(
+      top: 10,
+      left: 0,
+      right: 0,
+      child: Padding(
+        padding: EdgeInsets.all(10),
+        child: Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.symmetric(horizontal: 40),
+          height: 50,
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(0, 0, 0, 0.4),
+            borderRadius: BorderRadius.circular(25),
+          ),
+          child: Text(
+            "搜索",
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return _getSlider();
