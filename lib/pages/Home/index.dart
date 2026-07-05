@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hm_shop/api/home.dart';
 import 'package:hm_shop/components/Home/HmCategory.dart';
 import 'package:hm_shop/components/Home/HmHot.dart';
 import 'package:hm_shop/components/Home/HmMoreList.dart';
@@ -14,23 +15,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final List<BannerItem> _bannerList = [
-    BannerItem(
-      id: "1",
-      imgUrl:
-          "https://img1.baidu.com/it/u=1058602296,448067835&fm=253&app=138&f=JPEG?w=800&h=1422",
-    ),
-    BannerItem(
-      id: "1",
-      imgUrl:
-          "https://pic.rmb.bdstatic.com/bjh/bc1918969db/251013/119df5a840d46b97ffc893d1b15971fe.png",
-    ),
-    BannerItem(
-      id: "1",
-      imgUrl:
-          "https://img0.baidu.com/it/u=248783132,1382637838&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=889",
-    ),
-  ];
+  List<BannerItem> _bannerList = [];
 
   List<Widget> _getScrollChildren() {
     return [
@@ -56,6 +41,18 @@ class _HomeViewState extends State<HomeView> {
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       HmMoreList(),
     ];
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getBannerList();
+  }
+
+  void _getBannerList() async {
+    _bannerList = await getBannerListAPI();
+    setState(() {});
   }
 
   @override
