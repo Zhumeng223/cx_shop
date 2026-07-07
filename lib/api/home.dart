@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:hm_shop/constants/index.dart';
 import 'package:hm_shop/utils/DioRequest.dart';
 import 'package:hm_shop/viewmodels/home.dart';
@@ -40,4 +38,17 @@ Future<SpecialRecommendResult> getOneStopListAPI() async {
   return SpecialRecommendResult.fromJson(
     await dioRequest.get(HttpConstants.ONE_STOP_LIST),
   );
+}
+
+// 推荐列表
+Future<List<GoodDetailItem>> getRecommendListAPI(
+  Map<String, dynamic> params,
+) async {
+  // 返回请求
+  return ((await dioRequest.get(HttpConstants.RECOMMEND_LIST, params: params))
+          as List)
+      .map((item) {
+        return GoodDetailItem.formJSON(item as Map<String, dynamic>);
+      })
+      .toList();
 }
