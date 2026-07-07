@@ -59,7 +59,7 @@ class _HmMoreListState extends State<HmMoreList> {
                     children: [
                       TextSpan(text: " "),
                       TextSpan(
-                        text: "${widget.recommendList[index].price}",
+                        text: "${0}",
                         style: TextStyle(
                           decoration: TextDecoration.lineThrough,
                           color: Colors.grey,
