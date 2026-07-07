@@ -29,10 +29,7 @@ class _HmCategoryState extends State<HmCategory> {
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.network(item.picture ?? ""),
-                Text(item.name ?? ""),
-              ],
+              children: [Image.network(item.picture), Text(item.name)],
             ),
           );
         },
