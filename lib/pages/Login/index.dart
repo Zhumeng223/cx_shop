@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hm_shop/api/user.dart';
 import 'package:hm_shop/stores/TokenManager.dart';
 import 'package:hm_shop/stores/UserController.dart';
+import 'package:hm_shop/utils/LoadingDialog.dart';
 import 'package:hm_shop/utils/ToastUtils.dart';
 
 class LoginPage extends StatefulWidget {
@@ -73,6 +74,7 @@ class _LoginPageState extends State<LoginPage> {
 
   _login() async {
     try {
+      LoadingDialog.show(context);
       final res = await loginAPI({
         "account": _phoneController.text,
         "password": _codeController.text,
@@ -80,9 +82,11 @@ class _LoginPageState extends State<LoginPage> {
       _userController.updateUserInfo(res);
       // 将token写入持久化
       tokenManager.setToken(res.token);
+      LoadingDialog.hide(context);
       Toastutils.showToast(context, "登录成功！");
       Navigator.pop(context);
     } catch (e) {
+      LoadingDialog.hide(context);
       Toastutils.showToast(context, e.toString());
     }
   }
